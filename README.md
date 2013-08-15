@@ -16,7 +16,7 @@ Install and manage Kibana (http://kibana.org/)
 class {
     'kibana::install':
       port          => 9292,
-      java_provider => 'external',
+      java_provider => 'external', ## unset or specify 'package' to install java
       es_host       => 'elasticsearch0.internal.whatever.com',
   }
 ```
