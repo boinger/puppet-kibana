@@ -12,9 +12,11 @@ Install and manage Kibana (http://kibana.org/)
 * rubygems
 
 ## Usage
-  class {
+```puppet
+class {
     'kibana::install':
       port          => 9292,
       java_provider => 'external',
       es_host       => 'elasticsearch0.internal.whatever.com',
   }
+```
