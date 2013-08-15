@@ -7,7 +7,7 @@ module KibanaConfig
   Elasticsearch = "<%= es_host %>:<%= es_port %>"
 
   #Set the Net::HTTP read/open timeouts for the connection to the ES backend
-  ElasticsearchTimeout = 500
+  ElasticsearchTimeout = 300
 
   # The port Kibana should listen on
   KibanaPort = <%= @port %>
