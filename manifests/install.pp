@@ -37,11 +37,11 @@ class kibana::install (
       require => [Exec['git clone Kibana'],];
 
     'Kibana bundle install':
-      cwd      => '/opt/Kibana',
-      path     => ['/bin', '/usr/bin'],
-      commands => 'bundle install && touch Bundle.installedbypuppet',
-      creates  => '/opt/Kibana/Bundle.installedbypuppet',
-      require  => [Exec['gem install bundler'],];
+      cwd     => '/opt/Kibana',
+      path    => ['/bin', '/usr/bin'],
+      command => 'bundle install && touch Bundle.installedbypuppet',
+      creates => '/opt/Kibana/Bundle.installedbypuppet',
+      require => [Exec['gem install bundler'],];
 
   }
 
