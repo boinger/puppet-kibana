@@ -9,12 +9,15 @@ class kibana::install (
   $java_package   = 'java-1.7.0-openjdk',
 ) {
 
+  Exec     { path => ["/usr/bin", "/bin", "/sbin"], }
+  Package  { ensure => "installed", }
+  File     { ensure => present, owner => root, group => root, mode => 0755, }
+
   if $java_provider == 'package' {
     if ! defined(Package[$java_package]) {
       package { "$java_package": }
     }
   }
-
 
   exec {
     'git clone Kibana':
@@ -54,5 +57,20 @@ class kibana::install (
       content => template("kibana/KibanaConfig.rb.erb"),
       #notify  => Daemontools::Service['kibana'],
       require => Exec['git clone Kibana'];
+  }
+
+  daemontools::setup{
+    $module_name:
+      user    => $kibana_user,
+      loguser => $kibana_user,
+      run     => template("${module_name}/service/run.erb"),
+      logrun  => template("${module_name}/service/log/run.erb"),
+      notify  => Daemontools::Service[$module_name];
+  }
+
+  daemontools::service {
+    $module_name:
+      source  => "/etc/${module_name}",
+      require => Daemontools::Setup[$module_name];
   }
 }
