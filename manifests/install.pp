@@ -21,7 +21,8 @@ class kibana::install (
       cwd     => '/opt',
       user    => root,
       command => "git clone https://github.com/rashidkpc/Kibana.git",
-      creates => "/opt/Kibana";
+      creates => "/opt/Kibana",
+      require => Package['git'];
 
 /*
     'get jruby':
@@ -34,7 +35,7 @@ class kibana::install (
       cwd     => '/opt',
       path    => ['/bin', '/usr/bin'],
       unless  => 'gem list | grep bundler',
-      require => [Exec['git clone Kibana'],];
+      require => [Package['rubygems'], Exec['git clone Kibana'],];
 
     'Kibana bundle install':
       cwd     => '/opt/Kibana',
