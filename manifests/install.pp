@@ -55,7 +55,7 @@ class kibana::install (
       owner   => "$kibana_user",
       group   => "$kibana_gid",
       content => template("kibana/KibanaConfig.rb.erb"),
-      #notify  => Daemontools::Service['kibana'],
+      notify  => Daemontools::Service['kibana'],
       require => Exec['git clone Kibana'];
   }
 
