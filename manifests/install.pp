@@ -38,7 +38,11 @@ class kibana::install (
       cwd     => '/opt',
       path    => ['/bin', '/usr/bin'],
       unless  => 'gem list | grep bundler',
-      require => [Package['rubygems'], Exec['git clone Kibana'],];
+      require => [
+        Package['rubygems'],
+        Exec['git clone Kibana'],
+        File['/opt'],
+        ];
 
     'Kibana bundle install':
       cwd     => '/opt/Kibana',
