@@ -41,7 +41,6 @@ class kibana::install (
       require => [
         Package['rubygems'],
         Exec['git clone Kibana'],
-        File['/opt'],
         ];
 
     'Kibana bundle install':
