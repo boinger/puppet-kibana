@@ -1,4 +1,0 @@
-#!/bin/sh
-exec 2>&1
-cd /opt/Kibana
-exec setuidgid <%= @kibana_user %> /usr/bin/ruby kibana.rb
