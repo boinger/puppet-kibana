@@ -18,7 +18,7 @@ class kibana::install (
 
   if ($clobber_default) {
     file {
-      "/opt/kibana/src/app/dashboards/logstash.json":
+      "/opt/kibana/src/app/dashboards/default.json":
         content => template("${module_name}/default.json.erb"),
         mode    => 0644,
         require => Exec['git clone kibana'];
