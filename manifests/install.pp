@@ -8,7 +8,7 @@ class kibana::install (
   File     { ensure => present, owner => root, group => root, mode => 0755, }
 
   exec {
-    'git clone Kibana':
+    'git clone kibana':
       cwd     => '/opt',
       user    => root,
       command => "git clone ${kibana_source}",
